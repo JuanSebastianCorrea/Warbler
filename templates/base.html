@@ -18,8 +18,8 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-<nav class="navbar navbar-expand">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand m-0">
+  <div class="container">
     <div class="navbar-header">
       <a href="/" class="navbar-brand">
         <img src="/static/images/warbler-logo.png" alt="logo">
@@ -52,14 +52,14 @@
     </ul>
   </div>
 </nav>
-<div class="container">
+<div class="container-fluid p-0">
   {% for category, message in get_flashed_messages(with_categories=True) %}
   <div class="alert alert-{{ category }}">{{ message }}</div>
   {% endfor %}
-
+<div class="container">
   {% block content %}
   {% endblock %}
-
+</div>
 </div>
 </body>
 </html>
