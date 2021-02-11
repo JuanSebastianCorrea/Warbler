@@ -356,7 +356,8 @@ def homepage():
     - anon users: no messages
     - logged in: 100 most recent messages of followed_users
     """
-
+    import pdb
+    pdb.set_trace()
     if g.user:
         following_ids = [u.id for u in g.user.following] + [g.user.id]
         messages = (Message
