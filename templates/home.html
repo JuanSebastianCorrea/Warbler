@@ -15,24 +15,34 @@
             <p>@{{ g.user.username }}</p>
           </a>
           <ul class="user-stats nav nav-pills">
-            <li class="stat">
-              <p class="small">Messages</p>
-              <h4>
-                <a href="/users/{{ g.user.id }}">{{ g.user.messages | length }}</a>
-              </h4>
-            </li>
-            <li class="stat">
-              <p class="small">Following</p>
-              <h4>
-                <a href="/users/{{ g.user.id }}/following">{{ g.user.following | length }}</a>
-              </h4>
-            </li>
-            <li class="stat">
-              <p class="small">Followers</p>
-              <h4>
-                <a href="/users/{{ g.user.id }}/followers">{{ g.user.followers | length }}</a>
-              </h4>
-            </li>
+            <div class="row">
+              <div class="col">
+                <li class="stat">
+                  <p class="small">Messages</p>
+                  <h4>
+                    <a href="/users/{{ g.user.id }}">{{ g.user.messages | length }}</a>
+                  </h4>
+                </li>
+                <li class="stat">
+                  <p class="small">Following</p>
+                  <h4>
+                    <a href="/users/{{ g.user.id }}/following">{{ g.user.following | length }}</a>
+                  </h4>
+                </li>
+              </div>
+              <div class="col">
+                <li class="stat">
+                  <p class="small">Followers</p>
+                  <h4>
+                    <a href="/users/{{ g.user.id }}/followers">{{ g.user.followers | length }}</a>
+                  </h4>
+                </li>
+                <li class="stat">
+                  <p class="small">Likes</p>
+                  <h4><a href="/users/{{g.user.id}}/likes">{{ g.user.likes | length }}</a></h4>
+                </li>
+                </div>
+            </div>
           </ul>
         </div>
       </div>
@@ -52,12 +62,11 @@
               <p>{{ msg.text }}</p>
             </div>
             <form method="POST" action="/users/add_like/{{ msg.id }}" id="messages-form">
-              <button class="
-                btn 
-                btn-sm 
-                {{'btn-primary' if msg.id in likes else 'btn-secondary'}}"
+              <button class="btn btn-sm 
+              
+                {{'btn-primary' if msg.id in liked_message_ids else 'btn-secondary'}}"
               >
-                <i class="fa fa-thumbs-up"></i> 
+                <i class="fa fa-thumbs-up"></i>
               </button>
             </form>
           </li>
