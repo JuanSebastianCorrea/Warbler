@@ -7,6 +7,7 @@
 
 import os
 from unittest import TestCase
+from sqlalchemy import exc
 
 from models import db, User, Message, Follows, Likes
 
@@ -139,7 +140,7 @@ class UserModelTestCase(TestCase):
             db.session.commit()
     
     def test_invalid_password_signup(self):
-         """Does invalid password at signup trigger an integrity error?"""
+        """Does invalid password at signup trigger an integrity error?"""
         with self.assertRaises(ValueError) as context:
             User.signup("testtest", "email@email.com", "", None)
         
