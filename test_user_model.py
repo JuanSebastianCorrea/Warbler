@@ -23,23 +23,14 @@ os.environ['DATABASE_URL'] = "postgresql:///warbler-test"
 
 from app import app
 
-# Create our tables (we do this here, so we only create the tables
-# once for all tests --- in each test, we'll delete the data
-# and create fresh new clean test data
-
-db.create_all()
 
 
 class UserModelTestCase(TestCase):
-    """Test views for messages."""
+    """Test user model."""
 
     def setUp(self):
         """Create test client, add sample data."""
 
-        # User.query.delete()
-        # Message.query.delete()
-        # Follows.query.delete()
-        # Likes.query.delete()
         db.drop_all()
         db.create_all()
 
@@ -140,7 +131,7 @@ class UserModelTestCase(TestCase):
             db.session.commit()
     
     def test_invalid_password_signup(self):
-        """Does invalid password at signup trigger an integrity error?"""
+        """Does invalid password at signup trigger a value error?"""
         with self.assertRaises(ValueError) as context:
             User.signup("testtest", "email@email.com", "", None)
         
